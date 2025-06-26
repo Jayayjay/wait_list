@@ -12,7 +12,7 @@ import random
 # Configure the page
 st.set_page_config(
     page_title="Bandog Beta Access",
-    page_icon="📊",
+    page_icon="🐾",
     layout="wide"
 )
 
