@@ -19,7 +19,6 @@ st.set_page_config(
 # Geeky finance-themed CSS
 st.markdown("""
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap');
     
     :root {
         --primary-bg: #0a0a0a;
@@ -263,7 +262,7 @@ def generate_mock_data():
         price_data.append(max(base_price, 10))  # Ensure positive prices
     
     # Mock portfolio data
-    portfolio_value = [1000]
+    portfolio_value = [10000]
     for i in range(1, len(dates)):
         change = np.random.normal(0.05, 1.5)  # Daily return
         new_value = portfolio_value[-1] * (1 + change/100)
@@ -298,9 +297,9 @@ def create_metrics_dashboard():
     """Create geeky financial metrics"""
     if 'metrics' not in st.session_state:
         st.session_state.metrics = {
-            'beta_users': random.randint(17, 240),
-            'api_calls': random.randint(1400, 1895),
-            'uptime': random.uniform(80.7, 99.99),
+            'beta_users': random.randint(180, 250),
+            'api_calls': random.randint(1240, 8950),
+            'uptime': random.uniform(96.7, 99.99),
             'latency': random.uniform(12, 45)
         }
     
@@ -338,100 +337,100 @@ def create_metrics_dashboard():
         </div>
         """, unsafe_allow_html=True)
 
-def create_financial_charts():
-    """Create advanced interactive financial charts"""
-    data = generate_mock_data()
+# def create_financial_charts():
+#     """Create advanced interactive financial charts"""
+#     data = generate_mock_data()
     
-    # Create subplots with enhanced layout
-    fig = make_subplots(
-        rows=2, cols=1,
-        subplot_titles=('PORTFOLIO PERFORMANCE', 'PRICE & VOLUME'),
-        vertical_spacing=0.15,
-        row_heights=[0.7, 0.3]
-    )
+#     # Create subplots with enhanced layout
+#     fig = make_subplots(
+#         rows=2, cols=1,
+#         subplot_titles=('PORTFOLIO PERFORMANCE', 'PRICE & VOLUME'),
+#         vertical_spacing=0.15,
+#         row_heights=[0.7, 0.3]
+#     )
     
-    # Portfolio performance
-    fig.add_trace(
-        go.Scatter(
-            x=data['date'],
-            y=data['portfolio'],
-            mode='lines',
-            name='Portfolio Value',
-            line=dict(color='#00ff88', width=2),
-            fill='tozeroy',
-            fillcolor='rgba(0, 255, 136, 0.1)'
-        ),
-        row=1, col=1
-    )
+#     # Portfolio performance
+#     fig.add_trace(
+#         go.Scatter(
+#             x=data['date'],
+#             y=data['portfolio'],
+#             mode='lines',
+#             name='Portfolio Value',
+#             line=dict(color='#00ff88', width=2),
+#             fill='tozeroy',
+#             fillcolor='rgba(0, 255, 136, 0.1)'
+#         ),
+#         row=1, col=1
+#     )
     
-    # Price data
-    fig.add_trace(
-        go.Scatter(
-            x=data['date'],
-            y=data['price'],
-            mode='lines',
-            name='Price',
-            line=dict(color='#4488ff', width=1.5),
-            yaxis='y2'
-        ),
-        row=2, col=1
-    )
+#     # Price data
+#     fig.add_trace(
+#         go.Scatter(
+#             x=data['date'],
+#             y=data['price'],
+#             mode='lines',
+#             name='Price',
+#             line=dict(color='#4488ff', width=1.5),
+#             yaxis='y2'
+#         ),
+#         row=2, col=1
+#     )
     
-    # Volume data
-    fig.add_trace(
-        go.Bar(
-            x=data['date'],
-            y=data['volume'],
-            name='Volume',
-            marker=dict(color='#666666', opacity=0.7),
-            yaxis='y3'
-        ),
-        row=2, col=1
-    )
+#     # Volume data
+#     fig.add_trace(
+#         go.Bar(
+#             x=data['date'],
+#             y=data['volume'],
+#             name='Volume',
+#             marker=dict(color='#666666', opacity=0.7),
+#             yaxis='y3'
+#         ),
+#         row=2, col=1
+#     )
     
-    # Update layout
-    fig.update_layout(
-        height=600,
-        plot_bgcolor='#1a1a1a',
-        paper_bgcolor='#1a1a1a',
-        font=dict(color='#00ff88', family='JetBrains Mono'),
-        margin=dict(l=50, r=50, t=80, b=50),
-        legend=dict(
-            orientation="h",
-            yanchor="bottom",
-            y=1.02,
-            xanchor="right",
-            x=1
-        ),
-        hovermode="x unified"
-    )
+#     # Update layout
+#     fig.update_layout(
+#         height=600,
+#         plot_bgcolor='#1a1a1a',
+#         paper_bgcolor='#1a1a1a',
+#         font=dict(color='#00ff88', family='JetBrains Mono'),
+#         margin=dict(l=50, r=50, t=80, b=50),
+#         legend=dict(
+#             orientation="h",
+#             yanchor="bottom",
+#             y=1.02,
+#             xanchor="right",
+#             x=1
+#         ),
+#         hovermode="x unified"
+#     )
     
-    # Update y-axes
-    fig.update_yaxes(
-        row=1, col=1,
-        showgrid=False,
-        zeroline=False,
-        title_text="Value ($)"
-    )
+#     # Update y-axes
+#     fig.update_yaxes(
+#         row=1, col=1,
+#         showgrid=False,
+#         zeroline=False,
+#         title_text="Value ($)"
+#     )
     
-    fig.update_yaxes(
-        row=2, col=1,
-        showgrid=False,
-        zeroline=False,
-        title_text="Price ($)",
-        side="left"
-    )
+#     fig.update_yaxes(
+#         row=2, col=1,
+#         showgrid=False,
+#         zeroline=False,
+#         title_text="Price ($)",
+#         side="left"
+#     )
     
-    fig.update_yaxes(
-        row=2, col=1,
-        showgrid=False,
-        zeroline=False,
-        title_text="Volume",
-        side="right",
-        overlaying="y2"
-    )
+#     fig.update_yaxes(
+#         row=2, col=1,
+#         showgrid=False,
+#         zeroline=False,
+#         title_text="Volume",
+#         side="right",
+#         overlaying="y2"
+#     )
     
-    return fig
+#     return fig
 
 def create_status_bar():
     """Create a geeky status bar"""
@@ -445,18 +444,53 @@ def create_status_bar():
     </div>
     """, unsafe_allow_html=True)
 
+def risk_metrics():
+        st.markdown('<div class="chart-title">Risk Metrics</div>', unsafe_allow_html=True)
+        
+        # Risk gauge
+        risk_value = random.uniform(20, 80)
+        risk_fig = go.Figure(go.Indicator(
+            mode = "gauge+number",
+            value = risk_value,
+            domain = {'x': [0, 1], 'y': [0, 1]},
+            title = {'text': "Risk Level"},
+            gauge = {
+                'axis': {'range': [None, 100]},
+                'bar': {'color': "#00ff88"},
+                'steps': [
+                    {'range': [0, 30], 'color': "#2a2a2a"},
+                    {'range': [30, 70], 'color': "#1a1a1a"},
+                    {'range': [70, 100], 'color': "#0a0a0a"}
+                ],
+                'threshold': {
+                    'line': {'color': "red", 'width': 4},
+                    'thickness': 0.75,
+                    'value': 90
+                }
+            }
+        ))
+        risk_fig.update_layout(
+            height=200,
+            paper_bgcolor='#1a1a1a',
+            font=dict(color='#00ff88', family='JetBrains Mono', size=10),
+            margin=dict(l=0, r=0, t=0, b=0)
+        )
+        st.plotly_chart(risk_fig, use_container_width=True, config={'displayModeBar': False})
+         
+    
+
 def main():
     # Terminal header
     create_terminal_header()
     
     # Status bar
     create_status_bar()
-    
-    # Metrics dashboard
     create_metrics_dashboard()
     
-     # Beta access form 
-    st.markdown('<div class="form-section"> BanDog: AI That Sniffs Out Market Moves Before They Happen Get real-time alerts on unusual stock volume surges—before the crowd notices. BanDog combines AI, sentiment analysis, and zero-lag market data to give traders and investors the unfair advantage they’ve been chasing. Built for speed. Trained for precision. Designed for alpha. <span class="blink">_</span> </div>', unsafe_allow_html=True)
+    
+
+    # Form section - FIXED INDENTATIOn    
+    st.markdown('<div class="form-section"> BanDog: AI That Sniffs Out Market Moves Before They Happen Get real-time alerts on unusual stock volume surges—before the crowd notices. BanDog combines AI, sentiment analysis, and zero-lag market data to give traders and investors the unfair advantage they’ve been chasing. Built for speed. Trained for precision. Designed for alpha. <span class="blink">_</span> </div>', unsafe_allow_html=True)        
     st.markdown('<div class="form-title">// REQUEST BETA ACCESS</div>', unsafe_allow_html=True)
     
     # Get Brevo configuration
@@ -475,8 +509,6 @@ def main():
         # Get API key from: https://app.brevo.com/settings/keys/api
         </div>
         """, unsafe_allow_html=True)
-        st.markdown('</div>', unsafe_allow_html=True)
-        return
     
     with st.form("beta_access_form"):
         col1, col2 = st.columns(2)
@@ -507,7 +539,11 @@ def main():
                     else:
                         st.error("❌ SYSTEM ERROR: Unable to process request. Please retry.")
     
-    st.markdown('</div>', unsafe_allow_html=True)
+    
+    
+    risk_metrics()
+    
+    # Metrics dashboard
     
     
     # Financial charts
@@ -516,80 +552,18 @@ def main():
     # st.plotly_chart(fig, use_container_width=True, config={'displayModeBar': False})
     # st.markdown('</div>', unsafe_allow_html=True)
     
-    # # Additional mini charts
-    # col1, col2 = st.columns(2)
+    # Additional mini charts
     
-    # with col1:
-    #     st.markdown('<div class="chart-container">', unsafe_allow_html=True)
-    #     st.markdown('<div class="chart-title">Real-Time P&L</div>', unsafe_allow_html=True)
         
-    #     # Generate P&L data
-    #     pnl_data = np.random.randn(100).cumsum()
-    #     pnl_fig = go.Figure()
-    #     pnl_fig.add_trace(go.Scatter(
-    #         y=pnl_data,
-    #         mode='lines',
-    #         line=dict(color='#00ff88' if pnl_data[-1] > 0 else '#ff4444', width=2),
-    #         fill='tozeroy'
-    #     ))
-    #     pnl_fig.update_layout(
-    #         height=200,
-    #         showlegend=False,
-    #         plot_bgcolor='#1a1a1a',
-    #         paper_bgcolor='#1a1a1a',
-    #         font=dict(color='#00ff88', family='JetBrains Mono'),
-    #         xaxis=dict(showgrid=False, showticklabels=False),
-    #         yaxis=dict(showgrid=False),
-    #         margin=dict(l=0, r=0, t=0, b=0)
-    #     )
-    #     st.plotly_chart(pnl_fig, use_container_width=True, config={'displayModeBar': False})
-    #     st.markdown('</div>', unsafe_allow_html=True)
-    
-    # with col2:
-    #     st.markdown('<div class="chart-container">', unsafe_allow_html=True)
-    #     st.markdown('<div class="chart-title">Risk Metrics</div>', unsafe_allow_html=True)
-        
-    #     # Risk gauge
-    #     risk_value = random.uniform(20, 80)
-    #     risk_fig = go.Figure(go.Indicator(
-    #         mode = "gauge+number",
-    #         value = risk_value,
-    #         domain = {'x': [0, 1], 'y': [0, 1]},
-    #         title = {'text': "Risk Level"},
-    #         gauge = {
-    #             'axis': {'range': [None, 100]},
-    #             'bar': {'color': "#00ff88"},
-    #             'steps': [
-    #                 {'range': [0, 30], 'color': "#2a2a2a"},
-    #                 {'range': [30, 70], 'color': "#1a1a1a"},
-    #                 {'range': [70, 100], 'color': "#0a0a0a"}
-    #             ],
-    #             'threshold': {
-    #                 'line': {'color': "red", 'width': 4},
-    #                 'thickness': 0.75,
-    #                 'value': 90
-    #             }
-    #         }
-    #     ))
-    #     risk_fig.update_layout(
-    #         height=200,
-    #         paper_bgcolor='#1a1a1a',
-    #         font=dict(color='#00ff88', family='JetBrains Mono', size=10),
-    #         margin=dict(l=0, r=0, t=0, b=0)
-    #     )
-    #     st.plotly_chart(risk_fig, use_container_width=True, config={'displayModeBar': False})
-    #     st.markdown('</div>', unsafe_allow_html=True)
-    
-   
     # Footer with system info
     st.markdown("""
     <div class="code-block">
     SYSTEM INFO:
-    ├── Platform: Bandog Beta v1.2.0
+    ├── Platform: BanDog Beta v2.1.0
     ├── Environment: Production
     ├── Security: End-to-end encrypted
     ├── Compliance: SOC2, GDPR compliant
-    └── Support: beta-support@Bandog.io
+    └── Support: beta-support@bandog.io
     
     © 2025 Bandog Labs. All rights reserved.
     </div>
